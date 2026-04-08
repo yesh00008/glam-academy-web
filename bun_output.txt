@@ -1,0 +1,11 @@
+$ vite
+Port 8080 is in use, trying another one...
+Port 8081 is in use, trying another one...
+
+  VITE v5.4.19  ready in 333 ms
+
+  ➜  Local:   http://localhost:8082/
+  ➜  Network: http://192.168.0.2:8082/
+Browserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme

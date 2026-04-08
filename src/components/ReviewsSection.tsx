@@ -8,6 +8,9 @@ const stickyNotes = [
   { name: "Riya P.", text: "Aria ma'am is the best mentor. Her eye for detail is incredible.", rating: 5, color: "bg-purple-100", rotation: "3deg" },
   { name: "Divya T.", text: "World-class facilities and incredible placement support.", rating: 5, color: "bg-orange-100", rotation: "-2deg" },
   { name: "Kavita R.", text: "I went from zero knowledge to doing celebrity makeup. Thank you GA!", rating: 5, color: "bg-blue-100", rotation: "1deg" },
+  { name: "Sanya M.", text: "The skincare module was eye-opening. Learned so many professional techniques.", rating: 5, color: "bg-yellow-100", rotation: "-2deg" },
+  { name: "Roshni D.", text: "Great atmosphere and supportive peers. Highly recommend to everyone!", rating: 4, color: "bg-pink-100", rotation: "1deg" },
+  { name: "Ishita B.", text: "The editorial makeup sessions were a dream come true. So inspiring!", rating: 5, color: "bg-green-100", rotation: "-3deg" },
 ];
 
 const chatMessages = [
@@ -16,6 +19,9 @@ const chatMessages = [
   { name: "Meera", text: "The bridal workshop last weekend was AMAZING! When's the next one?", side: "left" as const },
   { name: "Academy", text: "Next batch starts in 2 weeks! DM us to reserve your spot 💄", side: "right" as const },
   { name: "Pooja", text: "Got my first freelance booking after just 2 months of training! 🎉", side: "left" as const },
+  { name: "Karan", text: "Hi! Do you provide kits along with the professional course?", side: "left" as const },
+  { name: "Academy", text: "Yes Karan! All professional courses include a comprehensive starter kit 🎒", side: "right" as const },
+  { name: "Anjali", text: "Can't wait for my class tomorrow! We're doing airbrushing right?", side: "left" as const },
 ];
 
 const ReviewsSection = () => {
