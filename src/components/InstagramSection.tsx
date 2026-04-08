@@ -17,9 +17,9 @@ const InstagramSection = () => {
       <div className="max-w-7xl mx-auto text-center">
         <Instagram className="mx-auto mb-4 text-primary" size={36} />
         <h2 className="heading-display mb-2">Follow Our <span className="text-primary italic">Artistry</span></h2>
-        <p className="text-muted-foreground mb-2">@glamouracademy</p>
+        <p className="text-muted-foreground mb-2">@swapnamakeupartists</p>
         <a
-          href="https://instagram.com"
+          href="https://instagram.com/swapnamakeupartists"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block btn-primary-glow text-sm mb-10"
@@ -31,7 +31,7 @@ const InstagramSection = () => {
           {posts.map((src, i) => (
             <a
               key={i}
-              href="https://instagram.com"
+              href="https://instagram.com/swapnamakeupartists"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative overflow-hidden rounded-xl aspect-square"
