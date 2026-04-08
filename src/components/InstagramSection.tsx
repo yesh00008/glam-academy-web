@@ -1,13 +1,13 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Instagram } from "lucide-react";
-import bridalImg from "@/assets/course-bridal.jpg";
-import nailsImg from "@/assets/course-nails.jpg";
-import hairImg from "@/assets/course-hair.jpg";
-import editorialImg from "@/assets/course-editorial.jpg";
-import hero2 from "@/assets/hero-2.jpg";
-import founderImg from "@/assets/founder.jpg";
+import gallery1 from "@/assets/gallery-1.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
+import gallery6 from "@/assets/gallery-6.jpg";
 
-const posts = [bridalImg, nailsImg, hero2, editorialImg, hairImg, founderImg];
+const posts = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
 
 const InstagramSection = () => {
   const { ref, isVisible } = useScrollAnimation();
@@ -38,9 +38,12 @@ const InstagramSection = () => {
             >
               <img
                 src={src}
-                alt={`Instagram post ${i + 1}`}
+                alt={`Swapna Makeup Artists - Look ${i + 1}`}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 loading="lazy"
+                decoding="async"
+                width={400}
+                height={400}
               />
               <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-300 flex items-center justify-center">
                 <Instagram className="text-cream opacity-0 group-hover:opacity-100 transition-opacity duration-300" size={32} />
