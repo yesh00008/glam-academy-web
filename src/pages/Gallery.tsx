@@ -3,14 +3,32 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-// Placeholder images for now, user will replace them later.
+import gallery1 from "@/assets/gallery-1.jpg";
+import gallery2 from "@/assets/gallery-2.jpg";
+import gallery3 from "@/assets/gallery-3.jpg";
+import gallery4 from "@/assets/gallery-4.jpg";
+import gallery5 from "@/assets/gallery-5.jpg";
+import gallery6 from "@/assets/gallery-6.jpg";
+import courseBridal from "@/assets/course-bridal.jpg";
+import courseEditorial from "@/assets/course-editorial.jpg";
+import courseHair from "@/assets/course-hair.jpg";
+import courseHd from "@/assets/course-hd.jpg";
+import hero1 from "@/assets/hero-1.jpg";
+import hero2 from "@/assets/hero-2.jpg";
+
 const galleryImages = [
-  "https://images.unsplash.com/photo-1516975080661-46b008d24b61?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1512496015851-a1fbaf698941?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=800&auto=format&fit=crop",
+  gallery1,
+  gallery2,
+  gallery3,
+  gallery4,
+  gallery5,
+  gallery6,
+  courseBridal,
+  courseEditorial,
+  courseHair,
+  courseHd,
+  hero1,
+  hero2,
 ];
 
 const Gallery = () => {
