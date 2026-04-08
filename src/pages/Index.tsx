@@ -1,8 +1,6 @@
-import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import CoursesSection from "@/components/CoursesSection";
 import ReviewsSection from "@/components/ReviewsSection";
 import InstagramSection from "@/components/InstagramSection";
 import VideoTestimonialsSection from "@/components/VideoTestimonialsSection";
@@ -16,11 +14,9 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => (
   <div className="scroll-smooth">
-    <AnnouncementBar />
     <Navbar />
     <HeroSection />
     <AboutSection />
-    <CoursesSection />
     <VideoTestimonialsSection />
     <ReviewsSection />
     <InstagramSection />
