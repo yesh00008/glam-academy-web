@@ -5,7 +5,7 @@ const items = [
   {
     name: "Bride Maids Makeup",
     price: "₹8,000",
-    includes: "Eye Lashes, Savaram, Hair Styling, Makeup Products",
+    includes: "Eye Lashes, Savaram, Hair Products, Makeup Products",
     description: "Elegant and complementary looks for the bride's squad. Beautiful makeup that enhances natural beauty without stealing the bride's spotlight.",
   },
 ];

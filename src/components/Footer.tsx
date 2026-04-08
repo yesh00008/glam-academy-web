@@ -34,7 +34,7 @@ const Footer = () => (
         </div>
         <div>
           <h4 className="font-display font-semibold text-gold mb-4">Contact</h4>
-          <p className="text-cream/60 text-sm mb-1">+91 98765 43210</p>
+          <p className="text-cream/60 text-sm mb-1">+91 94404 96063</p>
           <p className="text-cream/60 text-sm mb-4">hello@glamouracademy.com</p>
           <div className="flex gap-3">
             {[Instagram, Youtube, Facebook].map((Icon, i) => (
