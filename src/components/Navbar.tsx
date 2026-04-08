@@ -1,43 +1,48 @@
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/#about" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const categories = [
   {
     title: "Bridal Makeup",
+    path: "/bridal-makeup",
     items: [
-      { name: "HD Makeup", price: "₹20,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
-      { name: "Hair Brush Makeup", price: "₹30,000", includes: "All Products, Eye Lashes, Savaram, Hair & Makeup Products" },
-      { name: "Water Resistant Makeup", price: "₹20,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
-      { name: "Sweat Proof Makeup", price: "₹20,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
-      { name: "Glossy Makeup", price: "₹20,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+      { name: "HD Makeup", price: "₹20,000" },
+      { name: "Hair Brush Makeup", price: "₹30,000" },
+      { name: "Water Resistant Makeup", price: "₹20,000" },
+      { name: "Sweat Proof Makeup", price: "₹20,000" },
+      { name: "Glossy Makeup", price: "₹20,000" },
     ],
   },
   {
     title: "Party Makeup",
+    path: "/party-makeup",
     items: [
-      { name: "Reception", price: "₹15,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
-      { name: "Sangeeth", price: "₹12,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
-      { name: "Cocktail", price: "₹10,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+      { name: "Reception", price: "₹15,000" },
+      { name: "Sangeeth", price: "₹12,000" },
+      { name: "Cocktail", price: "₹10,000" },
     ],
   },
   {
     title: "Simple Makeup",
+    path: "/simple-makeup",
     items: [
-      { name: "Bride Maids", price: "₹8,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+      { name: "Bride Maids", price: "₹8,000" },
     ],
   },
   {
     title: "Bridal Premium",
+    path: "/bridal-premium",
     items: [
-      { name: "Hair Brush Makeup", price: "₹30,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+      { name: "Hair Brush Makeup", price: "₹30,000" },
     ],
   },
 ];
@@ -49,6 +54,8 @@ const Navbar = () => {
   const [mobileCatOpen, setMobileCatOpen] = useState(false);
   const [mobileActiveCat, setMobileActiveCat] = useState<number | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -61,19 +68,26 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  const NavAnchor = ({ href, children, className, onClick }: { href: string; children: React.ReactNode; className?: string; onClick?: () => void }) => {
+    if (href.startsWith("/#") && isHome) {
+      return <a href={href.replace("/", "")} className={className} onClick={onClick}>{children}</a>;
+    }
+    return <Link to={href} className={className} onClick={onClick}>{children}</Link>;
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
-        <a href="#hero" className="font-display text-2xl font-bold text-primary tracking-tight">
+        <Link to="/" className="font-display text-2xl font-bold text-primary tracking-tight">
           Glamour<span className="text-gold">Academy</span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
           {navLinks.slice(0, 2).map((l) => (
-            <a key={l.href} href={l.href} className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200">
+            <NavAnchor key={l.href} href={l.href} className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200">
               {l.label}
-            </a>
+            </NavAnchor>
           ))}
 
           {/* Categories Dropdown */}
@@ -93,25 +107,40 @@ const Navbar = () => {
                     className="relative"
                     onMouseEnter={() => setActiveCat(i)}
                   >
-                    <button className={`w-full flex items-center justify-between px-4 py-3 text-sm font-medium transition-colors duration-150 ${activeCat === i ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"}`}>
+                    <Link
+                      to={cat.path}
+                      onClick={() => setCatOpen(false)}
+                      className={`w-full flex items-center justify-between px-4 py-3 text-sm font-medium transition-colors duration-150 ${activeCat === i ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"}`}
+                    >
                       {cat.title}
                       <ChevronRight size={14} className="text-muted-foreground" />
-                    </button>
+                    </Link>
 
                     {activeCat === i && (
-                      <div className="absolute left-full top-0 ml-1 bg-popover border border-border rounded-xl shadow-xl min-w-[300px] p-4 animate-fade-up">
+                      <div className="absolute left-full top-0 ml-1 bg-popover border border-border rounded-xl shadow-xl min-w-[280px] p-4 animate-fade-up">
                         <h4 className="font-display text-base font-semibold text-foreground mb-3">{cat.title}</h4>
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                           {cat.items.map((item) => (
-                            <div key={item.name} className="p-3 rounded-lg bg-muted/50 hover:bg-primary/5 transition-colors">
-                              <div className="flex items-center justify-between mb-1">
+                            <Link
+                              key={item.name}
+                              to={cat.path}
+                              onClick={() => setCatOpen(false)}
+                              className="block p-3 rounded-lg bg-muted/50 hover:bg-primary/5 transition-colors"
+                            >
+                              <div className="flex items-center justify-between">
                                 <span className="font-medium text-sm text-foreground">{item.name}</span>
                                 <span className="font-display font-bold text-primary text-sm">{item.price}</span>
                               </div>
-                              <p className="text-xs text-muted-foreground">Includes: {item.includes}</p>
-                            </div>
+                            </Link>
                           ))}
                         </div>
+                        <Link
+                          to={cat.path}
+                          onClick={() => setCatOpen(false)}
+                          className="mt-3 block text-center text-xs font-medium text-primary hover:text-gold transition-colors"
+                        >
+                          View All Details →
+                        </Link>
                       </div>
                     )}
                   </div>
@@ -121,11 +150,11 @@ const Navbar = () => {
           </div>
 
           {navLinks.slice(2).map((l) => (
-            <a key={l.href} href={l.href} className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200">
+            <NavAnchor key={l.href} href={l.href} className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200">
               {l.label}
-            </a>
+            </NavAnchor>
           ))}
-          <a href="#contact" className="btn-primary-glow text-sm">Book Consultation</a>
+          <NavAnchor href="/#contact" className="btn-primary-glow text-sm">Book Consultation</NavAnchor>
         </div>
 
         <button className="md:hidden text-foreground" onClick={() => setOpen(!open)} aria-label="Toggle menu">
@@ -137,12 +166,11 @@ const Navbar = () => {
       {open && (
         <div className="md:hidden bg-background border-t border-border px-4 pb-4 animate-fade-up max-h-[80vh] overflow-y-auto">
           {navLinks.slice(0, 2).map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block py-3 text-sm font-medium text-foreground border-b border-border/50">
+            <NavAnchor key={l.href} href={l.href} onClick={() => setOpen(false)} className="block py-3 text-sm font-medium text-foreground border-b border-border/50">
               {l.label}
-            </a>
+            </NavAnchor>
           ))}
 
-          {/* Mobile Categories */}
           <button
             onClick={() => setMobileCatOpen(!mobileCatOpen)}
             className="w-full flex items-center justify-between py-3 text-sm font-medium text-foreground border-b border-border/50"
@@ -165,14 +193,25 @@ const Navbar = () => {
                   {mobileActiveCat === i && (
                     <div className="pl-3 pb-2 space-y-2">
                       {cat.items.map((item) => (
-                        <div key={item.name} className="p-2.5 rounded-lg bg-muted/50">
-                          <div className="flex items-center justify-between mb-0.5">
+                        <Link
+                          key={item.name}
+                          to={cat.path}
+                          onClick={() => setOpen(false)}
+                          className="block p-2.5 rounded-lg bg-muted/50"
+                        >
+                          <div className="flex items-center justify-between">
                             <span className="font-medium text-xs text-foreground">{item.name}</span>
                             <span className="font-display font-bold text-primary text-xs">{item.price}</span>
                           </div>
-                          <p className="text-[11px] text-muted-foreground">Includes: {item.includes}</p>
-                        </div>
+                        </Link>
                       ))}
+                      <Link
+                        to={cat.path}
+                        onClick={() => setOpen(false)}
+                        className="block text-center text-xs font-medium text-primary py-1"
+                      >
+                        View All Details →
+                      </Link>
                     </div>
                   )}
                 </div>
@@ -181,13 +220,13 @@ const Navbar = () => {
           )}
 
           {navLinks.slice(2).map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block py-3 text-sm font-medium text-foreground border-b border-border/50">
+            <NavAnchor key={l.href} href={l.href} onClick={() => setOpen(false)} className="block py-3 text-sm font-medium text-foreground border-b border-border/50">
               {l.label}
-            </a>
+            </NavAnchor>
           ))}
-          <a href="#contact" onClick={() => setOpen(false)} className="btn-primary-glow text-sm mt-4 block text-center">
+          <NavAnchor href="/#contact" onClick={() => setOpen(false)} className="btn-primary-glow text-sm mt-4 block text-center">
             Book Consultation
-          </a>
+          </NavAnchor>
         </div>
       )}
     </nav>
