@@ -4,10 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/#about" },
-  { label: "Reviews", href: "/#reviews" },
-  { label: "Gallery", href: "/#gallery" },
-  { label: "Contact", href: "/#contact" },
+  { label: "About", href: "/about" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const categories = [
@@ -154,7 +154,7 @@ const Navbar = () => {
               {l.label}
             </NavAnchor>
           ))}
-          <NavAnchor href="/#contact" className="btn-primary-glow text-sm">Book Consultation</NavAnchor>
+          <NavAnchor href="/contact" className="btn-primary-glow text-sm">Book Consultation</NavAnchor>
         </div>
 
         <button className="md:hidden text-foreground" onClick={() => setOpen(!open)} aria-label="Toggle menu">
@@ -224,7 +224,7 @@ const Navbar = () => {
               {l.label}
             </NavAnchor>
           ))}
-          <NavAnchor href="/#contact" onClick={() => setOpen(false)} className="btn-primary-glow text-sm mt-4 block text-center">
+          <NavAnchor href="/contact" onClick={() => setOpen(false)} className="btn-primary-glow text-sm mt-4 block text-center">
             Book Consultation
           </NavAnchor>
         </div>

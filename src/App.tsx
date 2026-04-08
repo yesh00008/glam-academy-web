@@ -8,6 +8,10 @@ import BridalMakeup from "./pages/BridalMakeup.tsx";
 import PartyMakeup from "./pages/PartyMakeup.tsx";
 import SimpleMakeup from "./pages/SimpleMakeup.tsx";
 import BridalPremium from "./pages/BridalPremium.tsx";
+import Gallery from "./pages/Gallery.tsx";
+import Reviews from "./pages/Reviews.tsx";
+import About from "./pages/About.tsx";
+import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -24,6 +28,10 @@ const App = () => (
           <Route path="/party-makeup" element={<PartyMakeup />} />
           <Route path="/simple-makeup" element={<SimpleMakeup />} />
           <Route path="/bridal-premium" element={<BridalPremium />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
