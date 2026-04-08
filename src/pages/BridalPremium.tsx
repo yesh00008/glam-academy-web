@@ -5,7 +5,7 @@ const items = [
   {
     name: "Premium Hair Brush Makeup",
     price: "₹30,000",
-    includes: "Eye Lashes, Savaram, Complete Hair Styling, All Premium Products, Touch-up Kit, Draping Assistance, Pre-bridal Consultation",
+    includes: "Eye Lashes, Savaram, Complete Hair Products, All Premium Products, Touch-up Kit, Draping Assistance, Pre-bridal Consultation",
     description: "Our most luxurious bridal package. Includes a pre-bridal consultation, premium international products, expert hair brush technique, and complete styling assistance for a truly royal look.",
   },
 ];

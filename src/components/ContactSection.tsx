@@ -46,7 +46,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">Phone Number</label>
-                <input required type="tel" placeholder="+91 98765 43210" className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all" />
+                <input required type="tel" placeholder="+91 94404 96063" className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1.5">Email</label>

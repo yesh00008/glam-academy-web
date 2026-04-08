@@ -79,7 +79,7 @@ const ServicePageLayout = ({ title, subtitle, description, heroImage, items }: S
                   </div>
 
                   <a
-                    href="https://wa.me/919876543210"
+                    href="https://wa.me/919440496063"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-primary-glow w-full text-center text-sm flex items-center justify-center gap-2"
@@ -120,7 +120,7 @@ const ServicePageLayout = ({ title, subtitle, description, heroImage, items }: S
           <h2 className="heading-display text-2xl md:text-4xl mb-4">Ready to Look Your Best?</h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">Book your appointment today and let our expert artists create the perfect look for your special day.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" className="btn-primary-glow text-sm">
+            <a href="https://wa.me/919440496063" target="_blank" rel="noopener noreferrer" className="btn-primary-glow text-sm">
               Book on WhatsApp
             </a>
             <Link to="/#contact" className="btn-gold text-sm">

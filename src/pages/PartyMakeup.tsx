@@ -5,19 +5,19 @@ const items = [
   {
     name: "Reception Makeup",
     price: "₹15,000",
-    includes: "Eye Lashes, Savaram, Hair Styling, Makeup Products, Touch-up Kit",
+    includes: "Eye Lashes, Savaram, Hair Products, Makeup Products, Touch-up Kit",
     description: "Stunning reception-ready glam that transitions beautifully from day to night. Stand out as the star of the evening.",
   },
   {
     name: "Sangeeth Makeup",
     price: "₹12,000",
-    includes: "Eye Lashes, Savaram, Hair Styling, Makeup Products",
+    includes: "Eye Lashes, Savaram, Hair Products, Makeup Products",
     description: "Vibrant, dance-proof makeup perfect for the Sangeeth celebrations. Look gorgeous while you dance the night away.",
   },
   {
     name: "Cocktail Party Makeup",
     price: "₹10,000",
-    includes: "Eye Lashes, Savaram, Hair Styling, Makeup Products",
+    includes: "Eye Lashes, Savaram, Hair Products, Makeup Products",
     description: "Chic and sophisticated cocktail party looks. From smoky eyes to bold lips, we create the perfect party vibe.",
   },
 ];
