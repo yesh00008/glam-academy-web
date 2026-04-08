@@ -1,17 +1,65 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "#hero" },
   { label: "About", href: "#about" },
-  { label: "Courses", href: "#courses" },
   { label: "Reviews", href: "#reviews" },
   { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },
 ];
 
+const categories = [
+  {
+    title: "Bridal Makeup",
+    items: [
+      { name: "HD Makeup", price: "₹20,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+      { name: "Hair Brush Makeup", price: "₹30,000", includes: "All Products, Eye Lashes, Savaram, Hair & Makeup Products" },
+      { name: "Water Resistant Makeup", price: "₹20,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+      { name: "Sweat Proof Makeup", price: "₹20,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+      { name: "Glossy Makeup", price: "₹20,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+    ],
+  },
+  {
+    title: "Party Makeup",
+    items: [
+      { name: "Reception", price: "₹15,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+      { name: "Sangeeth", price: "₹12,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+      { name: "Cocktail", price: "₹10,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+    ],
+  },
+  {
+    title: "Simple Makeup",
+    items: [
+      { name: "Bride Maids", price: "₹8,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+    ],
+  },
+  {
+    title: "Bridal Premium",
+    items: [
+      { name: "Hair Brush Makeup", price: "₹30,000", includes: "Eye Lashes, Savaram, Hair & Makeup Products" },
+    ],
+  },
+];
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [catOpen, setCatOpen] = useState(false);
+  const [activeCat, setActiveCat] = useState<number | null>(null);
+  const [mobileCatOpen, setMobileCatOpen] = useState(false);
+  const [mobileActiveCat, setMobileActiveCat] = useState<number | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setCatOpen(false);
+        setActiveCat(null);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
@@ -19,35 +67,121 @@ const Navbar = () => {
         <a href="#hero" className="font-display text-2xl font-bold text-primary tracking-tight">
           Glamour<span className="text-gold">Academy</span>
         </a>
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200"
+
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-6">
+          {navLinks.slice(0, 2).map((l) => (
+            <a key={l.href} href={l.href} className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200">
+              {l.label}
+            </a>
+          ))}
+
+          {/* Categories Dropdown */}
+          <div ref={dropdownRef} className="relative">
+            <button
+              onClick={() => { setCatOpen(!catOpen); setActiveCat(null); }}
+              className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200"
             >
+              Categories <ChevronDown size={14} className={`transition-transform duration-200 ${catOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {catOpen && (
+              <div className="absolute top-full left-0 mt-3 bg-popover border border-border rounded-xl shadow-xl min-w-[240px] animate-fade-up overflow-hidden">
+                {categories.map((cat, i) => (
+                  <div
+                    key={cat.title}
+                    className="relative"
+                    onMouseEnter={() => setActiveCat(i)}
+                  >
+                    <button className={`w-full flex items-center justify-between px-4 py-3 text-sm font-medium transition-colors duration-150 ${activeCat === i ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"}`}>
+                      {cat.title}
+                      <ChevronRight size={14} className="text-muted-foreground" />
+                    </button>
+
+                    {activeCat === i && (
+                      <div className="absolute left-full top-0 ml-1 bg-popover border border-border rounded-xl shadow-xl min-w-[300px] p-4 animate-fade-up">
+                        <h4 className="font-display text-base font-semibold text-foreground mb-3">{cat.title}</h4>
+                        <div className="space-y-3">
+                          {cat.items.map((item) => (
+                            <div key={item.name} className="p-3 rounded-lg bg-muted/50 hover:bg-primary/5 transition-colors">
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="font-medium text-sm text-foreground">{item.name}</span>
+                                <span className="font-display font-bold text-primary text-sm">{item.price}</span>
+                              </div>
+                              <p className="text-xs text-muted-foreground">Includes: {item.includes}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {navLinks.slice(2).map((l) => (
+            <a key={l.href} href={l.href} className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200">
               {l.label}
             </a>
           ))}
           <a href="#contact" className="btn-primary-glow text-sm">Book Consultation</a>
         </div>
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
-        >
+
+        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)} aria-label="Toggle menu">
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
+
+      {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-background border-t border-border px-4 pb-4 animate-fade-up">
-          {navLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="block py-3 text-sm font-medium text-foreground border-b border-border/50"
-            >
+        <div className="md:hidden bg-background border-t border-border px-4 pb-4 animate-fade-up max-h-[80vh] overflow-y-auto">
+          {navLinks.slice(0, 2).map((l) => (
+            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block py-3 text-sm font-medium text-foreground border-b border-border/50">
+              {l.label}
+            </a>
+          ))}
+
+          {/* Mobile Categories */}
+          <button
+            onClick={() => setMobileCatOpen(!mobileCatOpen)}
+            className="w-full flex items-center justify-between py-3 text-sm font-medium text-foreground border-b border-border/50"
+          >
+            Categories
+            <ChevronDown size={16} className={`transition-transform duration-200 ${mobileCatOpen ? "rotate-180" : ""}`} />
+          </button>
+
+          {mobileCatOpen && (
+            <div className="pl-3 border-b border-border/50">
+              {categories.map((cat, i) => (
+                <div key={cat.title}>
+                  <button
+                    onClick={() => setMobileActiveCat(mobileActiveCat === i ? null : i)}
+                    className="w-full flex items-center justify-between py-2.5 text-sm font-medium text-muted-foreground"
+                  >
+                    {cat.title}
+                    <ChevronRight size={14} className={`transition-transform duration-200 ${mobileActiveCat === i ? "rotate-90" : ""}`} />
+                  </button>
+                  {mobileActiveCat === i && (
+                    <div className="pl-3 pb-2 space-y-2">
+                      {cat.items.map((item) => (
+                        <div key={item.name} className="p-2.5 rounded-lg bg-muted/50">
+                          <div className="flex items-center justify-between mb-0.5">
+                            <span className="font-medium text-xs text-foreground">{item.name}</span>
+                            <span className="font-display font-bold text-primary text-xs">{item.price}</span>
+                          </div>
+                          <p className="text-[11px] text-muted-foreground">Includes: {item.includes}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {navLinks.slice(2).map((l) => (
+            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="block py-3 text-sm font-medium text-foreground border-b border-border/50">
               {l.label}
             </a>
           ))}
